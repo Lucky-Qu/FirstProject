@@ -36,8 +36,12 @@ func StartService() {
 		}
 	})
 	g.GET("/FirstProject", func(c *gin.Context) {
+		name := c.Query("name")
+		student := model.Student{}
+		db.Model(&model.Student{}).Where("name = ?", name).Find(&student)
 		c.JSON(200, gin.H{
-			"msg": "查询成功",
+			"msg":     "查询成功",
+			"student": student,
 		})
 	})
 	g.DELETE("/FirstProject", func(c *gin.Context) {
