@@ -1,5 +1,7 @@
 package main
 
-func main() {
+import "FirstProject/service"
 
+func main() {
+	service.StartService()
 }
