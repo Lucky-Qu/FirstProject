@@ -45,6 +45,8 @@ func StartService() {
 		})
 	})
 	g.DELETE("/FirstProject/", func(c *gin.Context) {
+		name := c.Query("name")
+		db.Model(&model.Student{}).Where("name = ?", name).Unscoped().Delete(&model.Student{})
 		c.JSON(200, gin.H{
 			"msg": "删除成功",
 		})
